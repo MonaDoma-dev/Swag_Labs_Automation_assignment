@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import Pages.InventoryPage;
-import Pages.loginPage;
+import Pages.LoginPage;
 import Utils.DataDriven;
 
 public class InventoryTest extends BaseTest {
@@ -19,22 +19,16 @@ public class InventoryTest extends BaseTest {
 
     @Test
     public void testInventoryPageElements() {
-        loginPage loginPage = new loginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
         JSONObject validUser = (JSONObject) testData.get("validUser");
 
-        // Step 1: Login successfully
         InventoryPage inventoryPage = loginPage.login(
                 (String) validUser.get("username"),
                 (String) validUser.get("password")
         );
 
-        // Step 2: Verify Page Title/Header
         Assert.assertEquals(driver.getTitle(), "Swag Labs", "Page title mismatch!");
-
-        // Step 3: Verify Cart Icon is displayed
         Assert.assertTrue(inventoryPage.isCartIconDisplayed(), "Cart icon is not displayed!");
-
-        // Step 4: Verify 6 products displayed
         Assert.assertEquals(inventoryPage.getProductCount(), 6, "Products count is not 6!");
     }
 }

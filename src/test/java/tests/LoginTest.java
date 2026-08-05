@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import Pages.InventoryPage;
-import Pages.loginPage;
+import Pages.LoginPage;
 import Utils.DataDriven;
 
 public class LoginTest extends BaseTest {
@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 1)
     public void testSuccessfulLogin() {
-        loginPage loginPage = new loginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
         JSONObject validUser = (JSONObject) testData.get("validUser");
 
         InventoryPage inventoryPage = loginPage.login(
@@ -33,7 +33,7 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 2)
     public void testInvalidLogin() {
-        loginPage loginPage = new loginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
         JSONObject invalidUser = (JSONObject) testData.get("invalidUser");
 
         loginPage.login(
@@ -48,7 +48,7 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 3)
     public void testLoginWithoutPassword() {
-        loginPage loginPage = new loginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
         JSONObject userWithoutPassword = (JSONObject) testData.get("userWithoutPassword");
 
         loginPage.login(
